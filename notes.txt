@@ -1,0 +1,50 @@
+make sign in sign up avatar in sign up and errors haddling and protected route for chat group and home and in 
+routing in last route make * for not found page and same header and footer for home and chats 
+
+// Socket Io
+Step no 1 :-
+
+Make io middleware and pass cookie so there is no issue about cookies in cookies return add socket request and 
+request.res and a authenticaton middleware so the socket.user has the autheticated user or logged user data
+Cookies are set via HTTP, typically after user authentication (login).
+WebSocket does not directly set cookies, but it can access cookies that were set via HTTP during the initial handshake or upgrade request.
+Use middleware to parse and verify the cookies in the WebSocket connection and ensure the user is authenticated before allowing the connection.
+
+Step no 2 :-
+
+
+
+
+note : 
+socket.to(): Sends the message to all clients in the specified room except the sender.
+io.to(): Sends the message to all clients in the specified room, including the sender.
+io.emit() sab ko
+socket.emit() sirf khud ko
+socket.broadcast.emit()   sab ko except ap ko
+
+
+
+
+
+
+
+
+
+
+
+
+RTK query :
+normally we dispatch obj but when we want to like get get from api and the data from api dispach 
+we call thunk in dispatch and give argument if needed and the data it return stired in our store and 
+the extre reduces for thunk like i read the extra reducers which has cases for thunk function if thunk is 
+pending reject or fulfil .  thunkfuction.pending check like this .In thunkfuction we pass string to uniquely 
+identify function 
+
+we make all api call in a file using RTK and we made hook in this hook we call only muatae (post,put,delete) because
+these call rturn a function and api call run when we run these function .
+
+
+
+Todo
+notification saves in backened
+new message alert in name box and appears at top

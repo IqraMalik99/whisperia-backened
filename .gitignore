@@ -1,0 +1,40 @@
+# Node.js
+/node_modules/
+/notes
+# Logs
+*.log
+*.log.*
+
+# Environment files
+.env
+
+# Database files
+*.sqlite
+*.db
+*.mongodb
+
+# Temporary files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Vercel or other deployment-related files (if applicable)
+.vercel/
+
+# OS-specific files
+.DS_Store  # macOS
+Thumbs.db  # Windows
+
+# IDE/editor-specific files
+.vscode/
+.idea/
+
+# Build directories
+/build/
+dist/
+
+# Optional: If you're using a package-lock file (and want to ignore it)
+package-lock.json
+
+# Optional: If you're using the yarn.lock file
+yarn.lock
