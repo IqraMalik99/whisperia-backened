@@ -7,18 +7,13 @@ import { Server } from 'socket.io';
 import http from 'http';
 import { socketAuthentication } from './middlerware/socketmiddleware.js';
 import { Message } from './schema/message.schema.js';
-import { CHAT_JOINED, CHAT_LEAVED, NEW_MESSAGE_ALERT, ONLINE_USERS, START_TYPING, STOP_TYPING, NEW_MESSAGE, FRIEND_REQUEST_ALERT, Friend_Request } from './constansts/EventName.js'
-import { getSockets } from './utilities/Event.js';
+import { CHAT_JOINED, CHAT_LEAVED,  ONLINE_USERS, START_TYPING,  NEW_MESSAGE, FRIEND_REQUEST_ALERT} from './constansts/EventName.js'
 import { Chat } from './schema/chat.schema.js';
 import mongoose from 'mongoose';
 
 dotenv.config();
-// const permittedOrigins = [
-//     'https://chat-app-frontened-self.vercel.app',
-//     "http://localhost:5173",
-//   ];
 const corsOptions = {
-    origin: ' http://localhost:5173',
+    origin: '*',
     allowedHeaders: ["Content-Type"],
     credentials: true, // Allow credentials (cookies, headers, etc.)
 };
@@ -51,7 +46,7 @@ const decryptMessage = (encryptedMessage) => {
 
 export const io = new Server(server, {
     cors: {
-        origin: 'http://localhost:5173',
+        origin: '*',
         methods: ["GET", "POST"],
         allowedHeaders: ["Content-Type", 'Authorization'],
         credentials: true,
