@@ -14,6 +14,3 @@ mongoConnection().then(()=>{
     console.log(`Cannot make connection  mongodb ${error}`)
     })
 
-// server.listen(3000,()=>{
-//             console.log(" My server is running on port 3000");
-//         })

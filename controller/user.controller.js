@@ -34,8 +34,8 @@ let genToken = async (id) => {
   let options = {
    path: '/', 
    httpOnly: true, 
-   sameSite: 'Lax'
-    // sameSite: 'None'  in deploymnet
+  //  sameSite: 'Lax'
+    sameSite: 'None' 
   }
   export const signIn = AsyncHandler(async (req, res, next) => {
     try {
