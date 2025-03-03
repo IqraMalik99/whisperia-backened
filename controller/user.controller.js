@@ -7,7 +7,7 @@ import { Chat } from "../schema/chat.schema.js";
 import mongoose from "mongoose";
 import {getSockets} from '../utilities/Event.js'
 import { Request } from "../schema/request.schema.js";
-
+import jwt from "jsonwebtoken";
 // generate access token and refresh token 
 let genToken = async (id) => {
     try {
@@ -34,8 +34,10 @@ let genToken = async (id) => {
   let options = {
    path: '/', 
    httpOnly: true, 
-    sameSite: 'None',
+    // sameSite: 'None',
     secure: true,
+    sameSite:'Lax'
+    
   }
   export const signIn = AsyncHandler(async (req, res, next) => {
     try {
@@ -228,18 +230,35 @@ let genToken = async (id) => {
     }
     })
 
-    export let automatedLogin= AsyncHandler(async(req,res,next)=>{
-  try {
-        let id = req.params.id;
-        if(!id){
-          throw new ApiError(404,"Not having id");
-              }
-         let findUser = await User.findById(id);
-         if(!findUser){
-          throw new ApiError(400,"not getting user in automated login")
-         }
-         res.status(200).json(new Responce(200,findUser,"sucess in automated login"));
-  } catch (error) {
-    throw new ApiError(200,"not get automated login");
-   }
-    })
+
+    export let automatedLogin = AsyncHandler(async (req, res, next) => {
+      try {
+        const token = req.cookies.accessToken;
+    
+        if (!token) {
+          console.log("No token found");
+          return res.json(new Responce(200, null, "Not logged in"));
+        }
+    
+        let verification;
+        try {
+          verification = jwt.verify(token,process.env.TOKEN);
+        } catch (err) {
+          console.error("JWT Verification Error:", err.message);
+          return res.status(401).json(new Responce(401, null, "Invalid or expired token"));
+        }
+    
+        // Find the user in the database
+        const user = await User.findById(verification._id).select("-password -refreshToken");
+    
+        if (!user) {
+          return res.status(404).json(new Responce(404, null, "User not found"));
+        }
+    
+        return res.json(new Responce(200, user, "Successfully logged in"));
+      } catch (error) {
+        console.error("Unexpected Error in automate login:", error);
+        return res.status(500).json(new Responce(500, null, "Server error in automate login"));
+      }
+    });
+    

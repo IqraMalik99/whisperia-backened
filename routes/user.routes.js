@@ -9,5 +9,5 @@ userRouter.route('/sign-up').post(upload.single("avatar"),signUp);
 userRouter.route('/getToken/:Userstate.id').post(getTokenCookies);
 userRouter.route('/getreq').get(auth,getRequestPending);
 userRouter.route('/getreqacceptreject').get(auth,getRequestacceptreject);
-userRouter.route('/automatedLogin/:id').get(auth,automatedLogin);
+userRouter.route('/automatedLogin').get(automatedLogin);
 export {userRouter}
