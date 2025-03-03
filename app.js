@@ -13,7 +13,7 @@ import mongoose from 'mongoose';
 
 dotenv.config();
 const corsOptions = {
-    origin: 'http://localhost:5173',
+    origin: 'https://whisperia-frontened.vercel.app',
     allowedHeaders: ["Content-Type"],
     credentials: true, // Allow credentials (cookies, headers, etc.)
 };
@@ -46,7 +46,7 @@ const decryptMessage = (encryptedMessage) => {
 
 export const io = new Server(server, {
     cors: {
-        origin: 'http://localhost:5173',
+        origin: 'https://whisperia-frontened.vercel.app',
         methods: ["GET", "POST"],
         allowedHeaders: ["Content-Type", 'Authorization'],
         credentials: true,

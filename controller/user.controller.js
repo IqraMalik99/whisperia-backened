@@ -34,9 +34,9 @@ let genToken = async (id) => {
   let options = {
    path: '/', 
    httpOnly: true, 
-    // sameSite: 'None',
+   sameSite: "None",
     secure: true,
-    sameSite:'Lax'
+    // sameSite:'Lax'
     
   }
   export const signIn = AsyncHandler(async (req, res, next) => {
