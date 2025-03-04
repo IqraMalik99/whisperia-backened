@@ -18,7 +18,7 @@ import multer from "multer";
 // Define storage configuration
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, './public/temp'); // Save files to the ./public/temp directory
+    cb(null, '../public/temp'); // Save files to the ./public/temp directory
   },
   filename: function (req, file, cb) {
     // Retain the original filename
