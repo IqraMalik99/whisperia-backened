@@ -16,7 +16,7 @@ const auth = AsyncHandler(async (req, res, next) => {
         // Verify the JWT token
         let verification;
         try {
-            verification = jwt.verify(accessToken, 'mySecret');
+            verification = jwt.verify(accessToken, process.env.TOKEN);
         } catch (err) {
             throw new ApiError(400, "Token verification failed");
         }
