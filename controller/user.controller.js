@@ -28,6 +28,7 @@ let genToken = async (id) => {
       await user.save({ validateBeforeSave: false })
       return { refreshToken, accessToken }
     } catch (error) {
+          console.error("Sign-in failed token:", error);  // Show full error
       throw new ApiError(404, "Error in gen tokens from method")
     }
   }
@@ -72,6 +73,7 @@ let genToken = async (id) => {
           id:user._id
         }, "Sucessfully Logged in"));
     } catch (error) {
+          console.error("Sign-in failed:", error);  // Show full error
       throw new ApiError(404, "Error in logged in",error.message)
     }
   
