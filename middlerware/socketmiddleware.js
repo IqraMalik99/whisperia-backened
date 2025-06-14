@@ -10,7 +10,7 @@ export const socketAuthentication =async(err,socket,next)=>{
      }
  
      // Verify the JWT token
-     const verification = jwt.verify(accessToken, 'mySecret');
+     const verification = jwt.verify(accessToken,process.env.Token);
      if (!verification) {
          throw new ApiError(400, "Token verification failed");
      }
