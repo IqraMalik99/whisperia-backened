@@ -8,7 +8,7 @@ app.get("/",(req,res,next)=>{
 
 mongoConnection().then(()=>{
     server.listen(port,()=>{
-        console.log(" My server is running on port 3000");
+        console.log(" My server is running on port ",port);
     })
 }).catch((error)=>{
     console.log(`Cannot make connection  mongodb ${error}`)

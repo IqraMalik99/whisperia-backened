@@ -13,7 +13,7 @@ import mongoose from 'mongoose';
 
 dotenv.config();
 const corsOptions = {
-    origin: 'https://whisperia-frontened.vercel.app',
+    origin: '',
     allowedHeaders: ["Content-Type"],
     credentials: true, // Allow credentials (cookies, headers, etc.)
 };
@@ -35,7 +35,7 @@ app.use((err, req, res, next) => {
     res.status(500).json({ message: err.message, error: err });
 });
 
-const SECRET_KEY = "your-secure-key";
+const SECRET_KEY = process.env.secret;
 const decryptMessage = (encryptedMessage) => {
     const bytes = CryptoJS.AES.decrypt(encryptedMessage, SECRET_KEY);
     return bytes.toString(CryptoJS.enc.Utf8);
@@ -46,7 +46,7 @@ const decryptMessage = (encryptedMessage) => {
 
 export const io = new Server(server, {
     cors: {
-        origin: 'https://whisperia-frontened.vercel.app',
+        origin: process.env.client_url,
         methods: ["GET", "POST"],
         allowedHeaders: ["Content-Type", 'Authorization'],
         credentials: true,
